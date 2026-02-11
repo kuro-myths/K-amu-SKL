@@ -5,45 +5,74 @@
 @section('content')
 
 {{-- ========== SECTION 1: HERO ========== --}}
-<section class="relative overflow-hidden">
-    <div class="absolute inset-0 gradient-bg opacity-10"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-36">
-        <div class="text-center">
-            <div class="inline-flex items-center px-4 py-2 rounded-full bg-purple-50 text-purple-600 text-sm font-medium mb-6">
-                <i data-feather="zap" class="w-4 h-4 mr-2"></i>
-                Sumber Kompetensi Literasi — 100% Gratis
-            </div>
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 leading-tight mb-6">
-                Temukan Pendidikan<br>
-                <span class="gradient-text">Gratis Tanpa Batas</span>
-            </h1>
-            <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
-                Platform terkurasi untuk kumpulan link edukasi, tools, dan resource gratis.
-                Bangun kompetensimu melalui literasi digital.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="{{ route('explore') }}" class="gradient-bg text-white px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition glow-hover inline-flex items-center justify-center">
-                    <i data-feather="compass" class="w-5 h-5 mr-2"></i>
-                    Jelajahi Sekarang
-                </a>
-                <a href="{{ route('register') }}" class="bg-white text-gray-800 border-2 border-gray-200 px-8 py-4 rounded-full text-lg font-semibold hover:border-purple-300 hover:text-purple-600 transition inline-flex items-center justify-center">
-                    <i data-feather="user-plus" class="w-5 h-5 mr-2"></i>
-                    Daftar Gratis
-                </a>
-            </div>
-            {{-- Stats --}}
-            <div class="flex justify-center gap-8 mt-14">
-                <div class="text-center">
-                    <p class="text-3xl font-bold gradient-text">{{ $totalEducations }}+</p>
-                    <p class="text-gray-500 text-sm">Link Edukasi</p>
+<section class="relative overflow-hidden min-h-[85vh] flex items-center bg-gradient-to-br from-gray-50 via-white to-purple-50/30">
+    {{-- Subtle background blobs --}}
+    <div class="absolute top-20 left-10 w-72 h-72 bg-purple-200/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-10 right-10 w-80 h-80 bg-teal-200/20 rounded-full blur-3xl"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {{-- Left: Text --}}
+            <div>
+                <div data-aos="fade-right" data-aos-delay="100" class="inline-flex items-center px-4 py-2 rounded-full bg-purple-50 text-purple-600 text-sm font-medium mb-6 border border-purple-100">
+                    <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                    Sumber Kompetensi Literasi — 100% Gratis
                 </div>
-                <div class="text-center">
-                    <p class="text-3xl font-bold gradient-text">{{ $totalCategories }}</p>
-                    <p class="text-gray-500 text-sm">Kategori</p>
+                <h1 data-aos="fade-right" data-aos-delay="200" class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+                    Temukan Pendidikan
+                    <span class="gradient-text block mt-2">Gratis Tanpa Batas</span>
+                </h1>
+                <p data-aos="fade-right" data-aos-delay="300" class="text-lg text-gray-600 max-w-lg mb-8 leading-relaxed">
+                    Platform terkurasi untuk kumpulan link edukasi, tools, dan resource gratis dari seluruh internet.
+                    Bangun kompetensimu bersama <strong class="text-gray-800">{{ number_format($totalUsers) }}+</strong> pengguna.
+                </p>
+                <div data-aos="fade-right" data-aos-delay="400" class="flex flex-col sm:flex-row gap-4 mb-10">
+                    <a href="{{ route('explore') }}" class="gradient-bg text-white px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition glow-hover inline-flex items-center justify-center">
+                        <i data-feather="compass" class="w-5 h-5 mr-2"></i>
+                        Jelajahi Sekarang
+                    </a>
+                    <a href="{{ route('register') }}" class="bg-white text-gray-800 border-2 border-gray-200 px-8 py-4 rounded-full text-lg font-semibold hover:border-purple-300 hover:text-purple-600 hover:shadow-lg transition-all inline-flex items-center justify-center">
+                        <i data-feather="user-plus" class="w-5 h-5 mr-2"></i>
+                        Daftar Gratis
+                    </a>
                 </div>
-                <div class="text-center">
-                    <p class="text-3xl font-bold gradient-text">{{ $totalUsers }}+</p>
-                    <p class="text-gray-500 text-sm">Pengguna</p>
+                {{-- Stats --}}
+                <div data-aos="fade-up" data-aos-delay="500" class="flex gap-8">
+                    <div class="text-center">
+                        <p class="text-3xl font-bold gradient-text">{{ $totalEducations }}+</p>
+                        <p class="text-gray-500 text-sm mt-1">Link Edukasi</p>
+                    </div>
+                    <div class="w-px bg-gray-200"></div>
+                    <div class="text-center">
+                        <p class="text-3xl font-bold gradient-text">{{ $totalCategories }}</p>
+                        <p class="text-gray-500 text-sm mt-1">Kategori</p>
+                    </div>
+                    <div class="w-px bg-gray-200"></div>
+                    <div class="text-center">
+                        <p class="text-3xl font-bold gradient-text">{{ $totalUsers }}+</p>
+                        <p class="text-gray-500 text-sm mt-1">Pengguna</p>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Right: Hero Image --}}
+            <div data-aos="fade-left" data-aos-delay="300" class="relative">
+                <div class="rounded-2xl overflow-hidden shadow-xl max-w-md mx-auto lg:max-w-none">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=560&h=380&fit=crop&crop=faces"
+                         alt="Students learning together"
+                         class="w-full h-auto object-cover rounded-2xl" loading="eager">
+                </div>
+                {{-- Small floating badge --}}
+                <div class="absolute -bottom-4 left-4 bg-white rounded-xl shadow-lg p-3 border border-gray-100" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center">
+                            <i data-feather="trending-up" class="w-4 h-4 text-white"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-gray-800">{{ $totalEducations }}+ Resource</p>
+                            <p class="text-[10px] text-gray-500">Gratis & terkurasi</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -53,152 +82,250 @@
 {{-- ========== SECTION 2: TENTANG ========== --}}
 <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Tentang <span class="gradient-text">K-amu SKL</span></h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">Sumber Kompetensi Literasi — Membangun Kompetensi Melalui Literasi Digital</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="text-center p-8 rounded-2xl bg-purple-50/50 card-hover transition-all duration-300">
-                <div class="w-14 h-14 rounded-2xl gradient-bg flex items-center justify-center mx-auto mb-4">
-                    <i data-feather="target" class="w-7 h-7 text-white"></i>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {{-- Left: Image --}}
+            <div data-aos="fade-right" class="max-w-md mx-auto lg:max-w-none">
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="rounded-xl overflow-hidden shadow-md img-hover-zoom">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=280&h=200&fit=crop"
+                             alt="Students" class="w-full h-40 object-cover" loading="lazy">
+                    </div>
+                    <div class="rounded-xl overflow-hidden shadow-md img-hover-zoom mt-6">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=280&h=200&fit=crop"
+                             alt="Collaboration" class="w-full h-40 object-cover" loading="lazy">
+                    </div>
+                    <div class="rounded-xl overflow-hidden shadow-md img-hover-zoom">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=280&h=200&fit=crop"
+                             alt="Online learning" class="w-full h-40 object-cover" loading="lazy">
+                    </div>
+                    <div class="rounded-xl overflow-hidden shadow-md img-hover-zoom mt-6">
+                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=280&h=200&fit=crop"
+                             alt="Education" class="w-full h-40 object-cover" loading="lazy">
+                    </div>
                 </div>
-                <h3 class="font-bold text-lg text-gray-900 mb-2">Apa Itu K-amu SKL?</h3>
-                <p class="text-gray-600 text-sm leading-relaxed">Platform pusat kumpulan link edukasi gratis yang terkurasi. Semua resource tersusun rapi berdasarkan kategori dan level.</p>
             </div>
-            <div class="text-center p-8 rounded-2xl bg-teal-50/50 card-hover transition-all duration-300">
-                <div class="w-14 h-14 rounded-2xl gradient-bg flex items-center justify-center mx-auto mb-4">
-                    <i data-feather="heart" class="w-7 h-7 text-white"></i>
+
+            {{-- Right: Text --}}
+            <div>
+                <div data-aos="fade-left" data-aos-delay="100">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full bg-purple-50 text-purple-600 text-xs font-semibold mb-4 uppercase tracking-wide">Tentang Kami</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                        Apa itu <span class="gradient-text">K-amu SKL?</span>
+                    </h2>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        <strong class="text-gray-800">K-amu SKL</strong> (Sumber Kompetensi Literasi) adalah platform open-source yang mengumpulkan, mengelola, dan berbagi link edukasi gratis dari seluruh internet. Akses pendidikan berkualitas seharusnya <strong class="text-gray-800">gratis dan mudah dijangkau</strong> oleh semua orang.
+                    </p>
                 </div>
-                <h3 class="font-bold text-lg text-gray-900 mb-2">Kenapa Dibuat?</h3>
-                <p class="text-gray-600 text-sm leading-relaxed">Karena akses edukasi berkualitas seharusnya gratis dan mudah dijangkau oleh semua orang, di mana saja.</p>
-            </div>
-            <div class="text-center p-8 rounded-2xl bg-purple-50/50 card-hover transition-all duration-300">
-                <div class="w-14 h-14 rounded-2xl gradient-bg flex items-center justify-center mx-auto mb-4">
-                    <i data-feather="globe" class="w-7 h-7 text-white"></i>
+                <div class="space-y-3">
+                    @php
+                        $aboutItems = [
+                            ['icon' => 'target', 'title' => 'Terkurasi & Terverifikasi', 'desc' => 'Setiap link direview admin sebelum dipublikasi.', 'bg' => 'bg-purple-50/50'],
+                            ['icon' => 'users', 'title' => 'Komunitas Kolaboratif', 'desc' => 'Dibangun komunitas, untuk komunitas. Siapa saja bisa kontribusi.', 'bg' => 'bg-teal-50/50'],
+                            ['icon' => 'heart', 'title' => 'Gratis Selamanya', 'desc' => 'Tanpa biaya, tanpa langganan. Akses untuk semua.', 'bg' => 'bg-purple-50/50'],
+                        ];
+                    @endphp
+                    @foreach($aboutItems as $idx => $item)
+                        <div data-aos="fade-left" data-aos-delay="{{ ($idx + 2) * 100 }}" class="flex items-start gap-3 p-3 rounded-xl {{ $item['bg'] }} hover:shadow-sm transition-all">
+                            <div class="w-9 h-9 rounded-lg gradient-bg flex-shrink-0 flex items-center justify-center">
+                                <i data-feather="{{ $item['icon'] }}" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 text-sm">{{ $item['title'] }}</h3>
+                                <p class="text-gray-600 text-xs">{{ $item['desc'] }}</p>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-                <h3 class="font-bold text-lg text-gray-900 mb-2">Misi & Visi</h3>
-                <p class="text-gray-600 text-sm leading-relaxed">Meningkatkan literasi digital dan membangun kompetensi melalui kolaborasi komunitas open-source.</p>
             </div>
         </div>
     </div>
 </section>
 
-{{-- ========== SECTION 3: KATEGORI UTAMA ========== --}}
+{{-- ========== SECTION 3: KATEGORI ========== --}}
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Kategori <span class="gradient-text">Utama</span></h2>
-            <p class="text-gray-600">Temukan resource berdasarkan bidang yang kamu minati</p>
+        <div class="text-center mb-12" data-aos="fade-up">
+            <span class="inline-flex items-center px-3 py-1 rounded-full bg-purple-50 text-purple-600 text-xs font-semibold mb-4 uppercase tracking-wide">Kategori</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Jelajahi Berdasarkan <span class="gradient-text">Kategori</span></h2>
+            <p class="text-gray-600 max-w-lg mx-auto">Temukan resource berdasarkan bidang yang kamu minati.</p>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-            @foreach($categories as $category)
+        @php
+            $catIcons = [
+                'programming' => '💻', 'design' => '🎨', 'business' => '💼',
+                'artificial-intelligence' => '🤖', 'bahasa' => '🌍', 'matematika' => '📐',
+                'tools-developer' => '🔧', 'referensi-akademik' => '📚', 'ui-ux' => '🖌️', 'career' => '🚀',
+            ];
+            $catColors = [
+                'programming' => 'bg-blue-50 border-blue-200 hover:bg-blue-100',
+                'design' => 'bg-pink-50 border-pink-200 hover:bg-pink-100',
+                'business' => 'bg-amber-50 border-amber-200 hover:bg-amber-100',
+                'artificial-intelligence' => 'bg-violet-50 border-violet-200 hover:bg-violet-100',
+                'bahasa' => 'bg-emerald-50 border-emerald-200 hover:bg-emerald-100',
+                'matematika' => 'bg-cyan-50 border-cyan-200 hover:bg-cyan-100',
+                'tools-developer' => 'bg-gray-50 border-gray-200 hover:bg-gray-100',
+                'referensi-akademik' => 'bg-yellow-50 border-yellow-200 hover:bg-yellow-100',
+                'ui-ux' => 'bg-fuchsia-50 border-fuchsia-200 hover:bg-fuchsia-100',
+                'career' => 'bg-lime-50 border-lime-200 hover:bg-lime-100',
+            ];
+        @endphp
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            @foreach($categories as $index => $category)
                 <a href="{{ route('explore', ['category' => $category->slug]) }}"
-                   class="glass p-5 rounded-2xl text-center card-hover transition-all duration-300 group">
-                    <div class="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition">
-                        <i data-feather="{{ $category->icon ?? 'folder' }}" class="w-6 h-6 text-white"></i>
-                    </div>
-                    <h3 class="font-semibold text-sm text-gray-800">{{ $category->name }}</h3>
+                   data-aos="fade-up"
+                   data-aos-delay="{{ ($index % 5) * 80 }}"
+                   class="group {{ $catColors[$category->slug] ?? 'bg-gray-50 border-gray-200 hover:bg-gray-100' }} border rounded-xl p-4 text-center transition-all duration-300 card-hover">
+                    <div class="text-3xl mb-2">{{ $catIcons[$category->slug] ?? '📁' }}</div>
+                    <h3 class="font-bold text-sm text-gray-800 group-hover:text-purple-600 transition-colors">{{ $category->name }}</h3>
                     <p class="text-xs text-gray-500 mt-1">{{ $category->approved_educations_count }} link</p>
                 </a>
             @endforeach
         </div>
+        <div class="text-center mt-8" data-aos="fade-up" data-aos-delay="200">
+            <a href="{{ route('categories') }}" class="text-purple-600 font-semibold hover:text-purple-700 transition inline-flex items-center text-sm group">
+                Lihat Semua Kategori <i data-feather="arrow-right" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+        </div>
     </div>
 </section>
 
-{{-- ========== SECTION 4: MATERI GRATIS POPULER ========== --}}
+{{-- ========== SECTION 4: MATERI POPULER ========== --}}
 <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Materi <span class="gradient-text">Gratis Populer</span></h2>
-            <p class="text-gray-600">Website kursus gratis, ebook, dokumentasi, dan PDF terbaik</p>
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+            <div data-aos="fade-right">
+                <span class="inline-flex items-center px-3 py-1 rounded-full bg-purple-50 text-purple-600 text-xs font-semibold mb-4 uppercase tracking-wide">Populer</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Materi <span class="gradient-text">Gratis Populer</span></h2>
+                <p class="text-gray-600">Kursus, ebook, dokumentasi, dan resource gratis terbaik.</p>
+            </div>
+            <a href="{{ route('explore') }}" data-aos="fade-left" class="gradient-bg text-white px-5 py-2.5 rounded-full font-semibold text-sm hover:opacity-90 transition inline-flex items-center mt-4 md:mt-0 group">
+                Lihat Semua <i data-feather="arrow-right" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"></i>
+            </a>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            @foreach($popularEducations as $edu)
-                <div class="bg-white border border-gray-100 rounded-2xl p-5 card-hover transition-all duration-300">
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="px-2 py-1 rounded-lg bg-purple-50 text-purple-600 text-xs font-medium">{{ $edu->category->name }}</span>
-                        <span class="px-2 py-1 rounded-lg bg-teal-50 text-teal-600 text-xs font-medium">{{ ucfirst($edu->level) }}</span>
+
+        @if($popularEducations->count())
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            @foreach($popularEducations as $index => $edu)
+                <div data-aos="fade-up" data-aos-delay="{{ ($index % 4) * 80 }}"
+                     class="group bg-white border border-gray-100 rounded-xl overflow-hidden card-hover transition-all duration-300 hover:border-purple-200">
+                    <div class="relative h-40 overflow-hidden">
+                        @if($edu->thumbnail)
+                            <img src="{{ $edu->thumbnail }}" alt="{{ $edu->title }}"
+                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                        @else
+                            <div class="w-full h-full bg-gradient-to-br from-purple-100 to-teal-100 flex items-center justify-center">
+                                <i data-feather="link" class="w-10 h-10 text-purple-300"></i>
+                            </div>
+                        @endif
+                        <div class="absolute top-2 left-2">
+                            <span class="px-2 py-0.5 rounded-md bg-white/90 backdrop-blur-sm text-purple-600 text-[11px] font-semibold">{{ $edu->category->name }}</span>
+                        </div>
+                        <div class="absolute top-2 right-2">
+                            <span class="px-2 py-0.5 rounded-md bg-white/90 backdrop-blur-sm text-teal-600 text-[11px] font-semibold">{{ ucfirst($edu->level) }}</span>
+                        </div>
                     </div>
-                    <h3 class="font-bold text-gray-900 mb-2 line-clamp-2">{{ $edu->title }}</h3>
-                    <p class="text-gray-500 text-sm mb-4 line-clamp-2">{{ $edu->description }}</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs text-gray-400 flex items-center">
-                            <i data-feather="eye" class="w-3 h-3 mr-1"></i>
-                            {{ number_format($edu->views) }}
-                        </span>
-                        <a href="{{ route('education.show', $edu) }}" class="text-purple-600 text-sm font-semibold hover:text-purple-700 transition flex items-center">
-                            Kunjungi <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
-                        </a>
+                    <div class="p-4">
+                        <h3 class="font-bold text-sm text-gray-900 mb-1.5 line-clamp-2 group-hover:text-purple-600 transition-colors">{{ $edu->title }}</h3>
+                        <p class="text-gray-500 text-xs mb-3 line-clamp-2">{{ $edu->description }}</p>
+                        <div class="flex items-center justify-between pt-2 border-t border-gray-50">
+                            <span class="text-[11px] text-gray-400 flex items-center">
+                                <i data-feather="eye" class="w-3 h-3 mr-1"></i>{{ number_format($edu->views) }}
+                            </span>
+                            <a href="{{ route('education.show', $edu) }}" class="text-purple-600 text-xs font-semibold hover:text-purple-700 transition flex items-center">
+                                Kunjungi <i data-feather="external-link" class="w-3 h-3 ml-1"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             @endforeach
         </div>
-        <div class="text-center mt-10">
-            <a href="{{ route('explore') }}" class="gradient-bg text-white px-6 py-3 rounded-full font-semibold hover:opacity-90 transition inline-flex items-center">
-                Lihat Semua <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+        @else
+        <div class="text-center py-12 bg-gray-50 rounded-xl" data-aos="fade-up">
+            <i data-feather="inbox" class="w-12 h-12 text-gray-300 mx-auto mb-3"></i>
+            <h3 class="text-lg font-bold text-gray-700 mb-2">Belum Ada Materi</h3>
+            <p class="text-gray-500 text-sm mb-4">Jadilah yang pertama berbagi link edukasi gratis!</p>
+            <a href="{{ route('register') }}" class="gradient-bg text-white px-5 py-2.5 rounded-full font-semibold text-sm hover:opacity-90 transition inline-flex items-center">
+                <i data-feather="plus-circle" class="w-4 h-4 mr-2"></i> Mulai Berkontribusi
             </a>
         </div>
+        @endif
     </div>
 </section>
 
 {{-- ========== SECTION 5: TOOLS GRATIS ========== --}}
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Tools <span class="gradient-text">Gratis</span></h2>
-            <p class="text-gray-600">Tools premium yang bisa kamu dapatkan secara gratis</p>
+        <div class="text-center mb-12" data-aos="fade-up">
+            <span class="inline-flex items-center px-3 py-1 rounded-full bg-teal-50 text-teal-600 text-xs font-semibold mb-4 uppercase tracking-wide">Tools</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Tools <span class="gradient-text">Premium Gratis</span></h2>
+            <p class="text-gray-600 max-w-lg mx-auto">Tools premium yang bisa kamu dapatkan secara gratis.</p>
         </div>
+        @php
+            $tools = [
+                ['name' => 'Figma', 'desc' => 'Design & Prototype', 'emoji' => '🎨', 'url' => 'https://figma.com'],
+                ['name' => 'GitHub Student', 'desc' => '100+ Dev Tools', 'emoji' => '🐙', 'url' => 'https://education.github.com/pack'],
+                ['name' => 'VS Code', 'desc' => 'Code Editor', 'emoji' => '💻', 'url' => 'https://code.visualstudio.com'],
+                ['name' => 'Canva', 'desc' => 'Graphic Design', 'emoji' => '🖼️', 'url' => 'https://canva.com'],
+                ['name' => 'Notion', 'desc' => 'Productivity', 'emoji' => '📝', 'url' => 'https://notion.so'],
+                ['name' => 'Vercel', 'desc' => 'Free Hosting', 'emoji' => '▲', 'url' => 'https://vercel.com'],
+            ];
+        @endphp
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            @php
-                $tools = [
-                    ['name' => 'Figma', 'icon' => 'figma', 'desc' => 'Design Tool'],
-                    ['name' => 'GitHub Student Pack', 'icon' => 'github', 'desc' => 'Dev Bundle'],
-                    ['name' => 'VS Code', 'icon' => 'code', 'desc' => 'Code Editor'],
-                    ['name' => 'Canva', 'icon' => 'image', 'desc' => 'Graphic Design'],
-                    ['name' => 'Free API', 'icon' => 'server', 'desc' => 'API Resources'],
-                    ['name' => 'Free Hosting', 'icon' => 'cloud', 'desc' => 'Cloud Hosting'],
-                ];
-            @endphp
-            @foreach($tools as $tool)
-                <div class="bg-white rounded-2xl p-5 text-center card-hover transition-all duration-300 border border-gray-100">
-                    <div class="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center mx-auto mb-3">
-                        <i data-feather="{{ $tool['icon'] }}" class="w-6 h-6 text-white"></i>
-                    </div>
-                    <h3 class="font-semibold text-sm text-gray-800">{{ $tool['name'] }}</h3>
-                    <p class="text-xs text-gray-500">{{ $tool['desc'] }}</p>
-                </div>
+            @foreach($tools as $index => $tool)
+                <a href="{{ $tool['url'] }}" target="_blank" rel="noopener"
+                   data-aos="fade-up" data-aos-delay="{{ $index * 60 }}"
+                   class="bg-white rounded-xl p-5 text-center card-hover transition-all duration-300 border border-gray-100 hover:border-purple-200 group">
+                    <div class="text-3xl mb-2">{{ $tool['emoji'] }}</div>
+                    <h3 class="font-bold text-sm text-gray-800 group-hover:text-purple-600 transition-colors">{{ $tool['name'] }}</h3>
+                    <p class="text-xs text-gray-500 mt-0.5">{{ $tool['desc'] }}</p>
+                </a>
             @endforeach
         </div>
     </div>
 </section>
 
-{{-- ========== SECTION 6: CARA MENDAPATKAN TOOLS ========== --}}
+{{-- ========== SECTION 6: PANDUAN TOOLS ========== --}}
 <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Cara Mendapatkan <span class="gradient-text">Tools Gratis</span></h2>
-            <p class="text-gray-600">Step-by-step panduan untuk mendapatkan akses tools premium secara gratis</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            @php
-                $guides = [
-                    ['title' => 'GitHub Student Developer Pack', 'desc' => 'Dapatkan 100+ tools developer gratis dengan email kampus', 'icon' => 'github'],
-                    ['title' => 'Google Cloud Free Tier', 'desc' => 'Akses $300 kredit Google Cloud dan layanan gratis selamanya', 'icon' => 'cloud'],
-                    ['title' => 'Canva Education', 'desc' => 'Canva Pro gratis untuk pelajar dan pengajar', 'icon' => 'image'],
-                    ['title' => 'Free Hosting', 'desc' => 'Deploy project gratis di Vercel, Netlify, Railway', 'icon' => 'globe'],
-                ];
-            @endphp
-            @foreach($guides as $guide)
-                <div class="flex items-start gap-4 p-6 rounded-2xl bg-gray-50 card-hover transition-all duration-300">
-                    <div class="w-12 h-12 rounded-xl gradient-bg flex-shrink-0 flex items-center justify-center">
-                        <i data-feather="{{ $guide['icon'] }}" class="w-6 h-6 text-white"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-gray-900 mb-1">{{ $guide['title'] }}</h3>
-                        <p class="text-gray-600 text-sm">{{ $guide['desc'] }}</p>
-                    </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {{-- Left: Image --}}
+            <div data-aos="fade-right" class="max-w-md mx-auto lg:max-w-none order-2 lg:order-1">
+                <div class="rounded-2xl overflow-hidden shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=500&h=360&fit=crop"
+                         alt="Developer tools" class="w-full h-auto object-cover" loading="lazy">
                 </div>
-            @endforeach
+            </div>
+
+            {{-- Right: Content --}}
+            <div class="order-1 lg:order-2">
+                <div data-aos="fade-left">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full bg-teal-50 text-teal-600 text-xs font-semibold mb-4 uppercase tracking-wide">Panduan</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Cara Mendapatkan <span class="gradient-text">Tools Gratis</span></h2>
+                    <p class="text-gray-600 mb-6 text-sm">Panduan mendapatkan akses tools premium secara gratis.</p>
+                </div>
+                @php
+                    $guides = [
+                        ['title' => 'GitHub Student Developer Pack', 'desc' => '100+ tools gratis: domain .me, JetBrains, DigitalOcean $200 credit.', 'emoji' => '🐙', 'tag' => 'Mahasiswa'],
+                        ['title' => 'Google Cloud Free Tier', 'desc' => '$300 kredit + 20 layanan gratis selamanya.', 'emoji' => '☁️', 'tag' => 'Semua'],
+                        ['title' => 'Canva Education', 'desc' => 'Canva Pro gratis untuk pelajar dan pengajar.', 'emoji' => '🎨', 'tag' => 'Pelajar'],
+                        ['title' => 'Free Hosting', 'desc' => 'Deploy gratis di Vercel, Netlify, Railway.', 'emoji' => '🚀', 'tag' => 'Developer'],
+                    ];
+                @endphp
+                <div class="space-y-3">
+                    @foreach($guides as $index => $guide)
+                        <div data-aos="fade-left" data-aos-delay="{{ ($index + 1) * 80 }}"
+                             class="flex items-start gap-3 p-4 rounded-xl border border-gray-100 hover:border-purple-200 hover:shadow-sm transition-all duration-300 group">
+                            <div class="text-2xl flex-shrink-0">{{ $guide['emoji'] }}</div>
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2 mb-0.5">
+                                    <h3 class="font-bold text-sm text-gray-900 group-hover:text-purple-600 transition-colors">{{ $guide['title'] }}</h3>
+                                    <span class="px-1.5 py-0.5 rounded-full bg-teal-50 text-teal-600 text-[10px] font-medium">{{ $guide['tag'] }}</span>
+                                </div>
+                                <p class="text-gray-600 text-xs">{{ $guide['desc'] }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -206,56 +333,64 @@
 {{-- ========== SECTION 7: CARA KERJA ========== --}}
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Cara Kerja <span class="gradient-text">Platform</span></h2>
-            <p class="text-gray-600">Begitu mudah untuk mulai berbagi dan belajar</p>
+        <div class="text-center mb-14" data-aos="fade-up">
+            <span class="inline-flex items-center px-3 py-1 rounded-full bg-purple-50 text-purple-600 text-xs font-semibold mb-4 uppercase tracking-wide">Alur</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Cara Kerja <span class="gradient-text">Platform</span></h2>
+            <p class="text-gray-600">5 langkah sederhana untuk mulai berbagi dan belajar.</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
-            @php
-                $steps = [
-                    ['step' => '1', 'title' => 'Daftar', 'desc' => 'Buat akun gratis', 'icon' => 'user-plus'],
-                    ['step' => '2', 'title' => 'Login', 'desc' => 'Masuk ke dashboard', 'icon' => 'log-in'],
-                    ['step' => '3', 'title' => 'Submit Link', 'desc' => 'Tambahkan link edukasi', 'icon' => 'plus-circle'],
-                    ['step' => '4', 'title' => 'Admin Review', 'desc' => 'Link direview admin', 'icon' => 'check-circle'],
-                    ['step' => '5', 'title' => 'Go Live!', 'desc' => 'Digunakan semua orang', 'icon' => 'globe'],
-                ];
-            @endphp
-            @foreach($steps as $step)
-                <div class="text-center">
-                    <div class="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center mx-auto mb-4 relative">
-                        <i data-feather="{{ $step['icon'] }}" class="w-7 h-7 text-white"></i>
-                        <span class="absolute -top-2 -right-2 w-7 h-7 bg-white rounded-full flex items-center justify-center text-xs font-bold text-purple-600 shadow-md">{{ $step['step'] }}</span>
+        @php
+            $steps = [
+                ['step' => '1', 'title' => 'Daftar', 'desc' => 'Buat akun gratis', 'emoji' => '📝'],
+                ['step' => '2', 'title' => 'Login', 'desc' => 'Masuk dashboard', 'emoji' => '🔑'],
+                ['step' => '3', 'title' => 'Submit', 'desc' => 'Kirim link edukasi', 'emoji' => '📤'],
+                ['step' => '4', 'title' => 'Review', 'desc' => 'Admin verifikasi', 'emoji' => '✅'],
+                ['step' => '5', 'title' => 'Live!', 'desc' => 'Diakses semua', 'emoji' => '🌍'],
+            ];
+        @endphp
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+            @foreach($steps as $index => $step)
+                <div data-aos="fade-up" data-aos-delay="{{ $index * 100 }}" class="text-center group">
+                    <div class="relative inline-block mb-3">
+                        <div class="w-16 h-16 rounded-2xl bg-white border-2 border-gray-100 group-hover:border-purple-200 flex items-center justify-center mx-auto shadow-sm group-hover:shadow-md transition-all">
+                            <span class="text-2xl">{{ $step['emoji'] }}</span>
+                        </div>
+                        <span class="absolute -top-1.5 -right-1.5 w-6 h-6 bg-white rounded-full flex items-center justify-center text-[10px] font-bold gradient-text shadow border border-gray-100">{{ $step['step'] }}</span>
                     </div>
-                    <h3 class="font-bold text-gray-900 mb-1">{{ $step['title'] }}</h3>
-                    <p class="text-gray-500 text-sm">{{ $step['desc'] }}</p>
+                    <h3 class="font-bold text-sm text-gray-900">{{ $step['title'] }}</h3>
+                    <p class="text-gray-500 text-xs">{{ $step['desc'] }}</p>
                 </div>
             @endforeach
         </div>
     </div>
 </section>
 
-{{-- ========== SECTION 8: LOKASI LAYANAN ========== --}}
+{{-- ========== SECTION 8: KEUNGGULAN ========== --}}
 <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Layanan <span class="gradient-text">Global</span></h2>
+        <div class="text-center mb-12" data-aos="fade-up">
+            <span class="inline-flex items-center px-3 py-1 rounded-full bg-purple-50 text-purple-600 text-xs font-semibold mb-4 uppercase tracking-wide">Keunggulan</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Kenapa Pilih <span class="gradient-text">K-amu SKL?</span></h2>
+            <p class="text-gray-600 max-w-lg mx-auto">Platform yang dirancang untuk pengalaman belajar terbaik.</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="text-center p-8 rounded-2xl bg-purple-50/50">
-                <i data-feather="globe" class="w-10 h-10 text-purple-400 mx-auto mb-4"></i>
-                <h3 class="font-bold text-gray-900 mb-2">Online Global</h3>
-                <p class="text-gray-600 text-sm">Diakses dari mana saja, kapan saja. Tanpa batasan geografis.</p>
-            </div>
-            <div class="text-center p-8 rounded-2xl bg-teal-50/50">
-                <i data-feather="flag" class="w-10 h-10 text-teal-400 mx-auto mb-4"></i>
-                <h3 class="font-bold text-gray-900 mb-2">Indonesia Friendly</h3>
-                <p class="text-gray-600 text-sm">Antarmuka Bahasa Indonesia, konten lokal dan internasional.</p>
-            </div>
-            <div class="text-center p-8 rounded-2xl bg-purple-50/50">
-                <i data-feather="message-circle" class="w-10 h-10 text-purple-400 mx-auto mb-4"></i>
-                <h3 class="font-bold text-gray-900 mb-2">Multi Bahasa</h3>
-                <p class="text-gray-600 text-sm">Resource dalam berbagai bahasa untuk jangkauan yang lebih luas.</p>
-            </div>
+        @php
+            $features = [
+                ['title' => 'Open Source', 'desc' => 'Kode terbuka, siapa saja bisa kontribusi.', 'emoji' => '🔓'],
+                ['title' => 'Akses Global', 'desc' => 'Diakses dari mana saja tanpa batas.', 'emoji' => '🌐'],
+                ['title' => 'Terkurasi Admin', 'desc' => 'Setiap link direview untuk kualitas.', 'emoji' => '🛡️'],
+                ['title' => 'Bookmark & Rating', 'desc' => 'Simpan favorit dan beri rating.', 'emoji' => '⭐'],
+                ['title' => 'Indonesia Friendly', 'desc' => 'UI Bahasa Indonesia, konten global.', 'emoji' => '🇮🇩'],
+                ['title' => 'Gratis Selamanya', 'desc' => 'Tanpa biaya tersembunyi.', 'emoji' => '💚'],
+            ];
+        @endphp
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            @foreach($features as $index => $feature)
+                <div data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 80 }}"
+                     class="p-5 rounded-xl border border-gray-100 hover:border-purple-200 hover:shadow-md transition-all duration-300 group bg-white">
+                    <div class="text-2xl mb-3">{{ $feature['emoji'] }}</div>
+                    <h3 class="font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors">{{ $feature['title'] }}</h3>
+                    <p class="text-gray-600 text-sm">{{ $feature['desc'] }}</p>
+                </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -263,33 +398,33 @@
 {{-- ========== SECTION 9: TESTIMONI ========== --}}
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Apa Kata <span class="gradient-text">Mereka?</span></h2>
-            <p class="text-gray-600">Feedback dari pengguna K-amu SKL</p>
+        <div class="text-center mb-12" data-aos="fade-up">
+            <span class="inline-flex items-center px-3 py-1 rounded-full bg-purple-50 text-purple-600 text-xs font-semibold mb-4 uppercase tracking-wide">Testimoni</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Apa Kata <span class="gradient-text">Mereka?</span></h2>
+            <p class="text-gray-600 max-w-lg mx-auto">Feedback dari pengguna K-amu SKL.</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            @php
-                $testimonials = [
-                    ['name' => 'Ahmad R.', 'role' => 'Mahasiswa IT', 'text' => 'K-amu SKL sangat membantu saya menemukan resource belajar programming gratis yang terkurasi rapi. Tidak perlu lagi bingung cari-cari di Google!', 'rating' => 5],
-                    ['name' => 'Siti N.', 'role' => 'Desainer UI/UX', 'text' => 'Koleksi tools gratis di sini lengkap banget. Saya bisa menemukan alternatif tools premium yang gratis untuk pekerjaan desain saya.', 'rating' => 5],
-                    ['name' => 'Budi S.', 'role' => 'Fresh Graduate', 'text' => 'Platform ini membantu saya mempersiapkan skill untuk karir. Banyak resource gratis berkualitas yang tidak saya temukan di tempat lain.', 'rating' => 4],
-                ];
-            @endphp
-            @foreach($testimonials as $testi)
-                <div class="bg-white p-6 rounded-2xl border border-gray-100 card-hover transition-all duration-300">
+        @php
+            $testimonials = [
+                ['name' => 'Ahmad Rizki', 'role' => 'Mahasiswa IT — UI', 'avatar' => 'https://i.pravatar.cc/80?img=11', 'text' => 'K-amu SKL sangat membantu saya menemukan resource belajar programming gratis yang terkurasi. Dari freeCodeCamp sampai CS50 Harvard, semua ada!', 'rating' => 5],
+                ['name' => 'Siti Nurhaliza', 'role' => 'UI/UX Designer — ITB', 'avatar' => 'https://i.pravatar.cc/80?img=5', 'text' => 'Koleksi tools gratis lengkap banget! Saya menemukan Figma tips, UI kits, dan panduan Canva Pro gratis. Sangat membantu!', 'rating' => 5],
+                ['name' => 'Budi Santoso', 'role' => 'Fresh Graduate — ITS', 'avatar' => 'https://i.pravatar.cc/80?img=12', 'text' => 'Platform ini membantu saya mempersiapkan karir di tech industry. Resource interview prep dan portfolio building-nya keren.', 'rating' => 5],
+            ];
+        @endphp
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            @foreach($testimonials as $index => $testi)
+                <div data-aos="fade-up" data-aos-delay="{{ $index * 100 }}"
+                     class="bg-white p-6 rounded-xl border border-gray-100 card-hover transition-all duration-300">
                     <div class="flex items-center gap-1 mb-4">
                         @for($i = 0; $i < $testi['rating']; $i++)
-                            <i data-feather="star" class="w-4 h-4 text-yellow-400 fill-current"></i>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                         @endfor
                     </div>
                     <p class="text-gray-600 text-sm mb-4 leading-relaxed">"{{ $testi['text'] }}"</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center">
-                            <span class="text-white text-sm font-bold">{{ substr($testi['name'], 0, 1) }}</span>
-                        </div>
+                    <div class="flex items-center gap-3 pt-3 border-t border-gray-50">
+                        <img src="{{ $testi['avatar'] }}" alt="{{ $testi['name'] }}" class="w-10 h-10 rounded-full object-cover" loading="lazy">
                         <div>
-                            <p class="font-semibold text-sm text-gray-800">{{ $testi['name'] }}</p>
-                            <p class="text-xs text-gray-500">{{ $testi['role'] }}</p>
+                            <p class="font-bold text-sm text-gray-800">{{ $testi['name'] }}</p>
+                            <p class="text-xs text-purple-600">{{ $testi['role'] }}</p>
                         </div>
                     </div>
                 </div>
@@ -301,19 +436,20 @@
 {{-- ========== SECTION 10: CTA ========== --}}
 <section class="py-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="gradient-bg rounded-3xl p-12 text-center text-white relative overflow-hidden">
-            <div class="absolute inset-0 bg-white/10 rounded-3xl"></div>
+        <div data-aos="zoom-in" class="gradient-bg rounded-3xl p-10 md:p-14 text-center text-white relative overflow-hidden">
+            <div class="absolute top-6 left-6 w-20 h-20 border-2 border-white/10 rounded-full"></div>
+            <div class="absolute bottom-6 right-6 w-28 h-28 border-2 border-white/10 rounded-full"></div>
             <div class="relative">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Siap Mulai Belajar?</h2>
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-3">Siap Mulai Belajar?</h2>
                 <p class="text-white/80 max-w-lg mx-auto mb-8">
-                    Bergabung dengan komunitas K-amu SKL dan akses ribuan link edukasi gratis. Gratis selamanya.
+                    Bergabung dengan {{ number_format($totalUsers) }}+ pengguna K-amu SKL. Akses {{ $totalEducations }}+ link edukasi gratis selamanya.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="{{ route('register') }}" class="bg-white text-purple-600 px-8 py-4 rounded-full font-bold hover:bg-gray-50 transition inline-flex items-center justify-center">
+                <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                    <a href="{{ route('register') }}" class="bg-white text-purple-600 px-8 py-3.5 rounded-full font-bold hover:bg-gray-50 transition inline-flex items-center justify-center">
                         <i data-feather="user-plus" class="w-5 h-5 mr-2"></i>
                         Daftar Gratis Sekarang
                     </a>
-                    <a href="{{ route('explore') }}" class="border-2 border-white/50 text-white px-8 py-4 rounded-full font-bold hover:bg-white/10 transition inline-flex items-center justify-center">
+                    <a href="{{ route('explore') }}" class="border-2 border-white/40 text-white px-8 py-3.5 rounded-full font-bold hover:bg-white/10 transition inline-flex items-center justify-center">
                         <i data-feather="compass" class="w-5 h-5 mr-2"></i>
                         Jelajahi Dulu
                     </a>

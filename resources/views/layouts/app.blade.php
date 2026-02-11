@@ -11,6 +11,9 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700,800&display=swap" rel="stylesheet" />
 
+    <!-- AOS - Animate On Scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
@@ -28,6 +31,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
 
         .gradient-bg {
@@ -48,13 +52,141 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
         .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(200, 182, 255, 0.2);
+            transform: translateY(-6px);
+            box-shadow: 0 24px 48px rgba(200, 182, 255, 0.25);
         }
 
         .glow-hover:hover {
-            box-shadow: 0 0 20px rgba(200, 182, 255, 0.4);
+            box-shadow: 0 0 30px rgba(200, 182, 255, 0.5);
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        @keyframes float-reverse {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(15px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
+        .animate-float-reverse { animation: float-reverse 7s ease-in-out infinite; }
+
+        /* Pulse glow */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(200, 182, 255, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(200, 182, 255, 0.6); }
+        }
+        .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+
+        /* Gradient shift */
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradient-shift 4s ease infinite;
+        }
+
+        /* Blob shapes */
+        .blob {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+        .blob-2 {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        }
+
+        /* Counter animation */
+        .counter-value {
+            transition: all 0.5s ease;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Image hover zoom */
+        .img-hover-zoom {
+            overflow: hidden;
+        }
+        .img-hover-zoom img {
+            transition: transform 0.5s ease;
+        }
+        .img-hover-zoom:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Stagger children animation delay */
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+
+        /* Line connector for steps */
+        .step-connector {
+            position: relative;
+        }
+        .step-connector::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient);
+            opacity: 0.3;
+        }
+        .step-connector:last-child::after {
+            display: none;
+        }
+
+        /* Testimonial card quote */
+        .quote-mark::before {
+            content: '\201C';
+            font-size: 4rem;
+            line-height: 1;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-family: Georgia, serif;
+            opacity: 0.3;
+        }
+
+        /* Tool card shimmer */
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        .shimmer:hover::after {
+            left: 100%;
         }
     </style>
 
@@ -92,6 +224,18 @@
 
     <script>
         feather.replace();
+    </script>
+
+    <!-- AOS Init -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 80,
+            disable: window.innerWidth < 768 ? 'phone' : false
+        });
     </script>
 
     @stack('scripts')

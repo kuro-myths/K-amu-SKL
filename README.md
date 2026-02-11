@@ -51,7 +51,7 @@
 | Teknologi          | Versi                       |
 | ------------------ | --------------------------- |
 | **Framework**      | Laravel 12+                 |
-| **Database**       | PostgreSQL                  |
+| **Database**       | MySQL                       |
 | **Authentication** | Laravel Breeze + Socialite  |
 | **Frontend**       | Blade + Tailwind CSS + Vite |
 | **Language**       | PHP 8.2+                    |
@@ -119,7 +119,7 @@ K-amu-SKL/
 - PHP >= 8.2
 - Composer
 - Node.js >= 18
-- PostgreSQL
+- MySQL / MariaDB
 - Git
 
 ### Langkah Instalasi
@@ -140,12 +140,12 @@ cp .env.example .env
 php artisan key:generate
 
 # 5. Konfigurasi database di .env
-# DB_CONNECTION=pgsql
+# DB_CONNECTION=mysql
 # DB_HOST=127.0.0.1
-# DB_PORT=5432
+# DB_PORT=3306
 # DB_DATABASE=kamu_skl
-# DB_USERNAME=postgres
-# DB_PASSWORD=your_password
+# DB_USERNAME=root
+# DB_PASSWORD=
 
 # 6. Konfigurasi OAuth di .env (opsional)
 # GOOGLE_CLIENT_ID=your_google_client_id
@@ -153,8 +153,8 @@ php artisan key:generate
 # GITHUB_CLIENT_ID=your_github_client_id
 # GITHUB_CLIENT_SECRET=your_github_client_secret
 
-# 7. Buat database PostgreSQL
-createdb kamu_skl
+# 7. Buat database MySQL
+mysql -u root -e "CREATE DATABASE IF NOT EXISTS kamu_skl"
 
 # 8. Jalankan migration & seeder
 php artisan migrate --seed
@@ -305,13 +305,16 @@ Project ini menggunakan **3 jenis lisensi** yang mengatur aspek berbeda:
 
 ## 🔮 Roadmap
 
-- [x] Landing page dengan 10 section
+- [x] Landing page dengan 10 section + scroll animations
 - [x] Sistem CRUD link edukasi
 - [x] OAuth Google & GitHub
 - [x] Role-based access (Admin & User)
 - [x] Approval system
 - [x] Bookmark system
 - [x] Review & rating
+- [x] Real education data seeder (25+ links)
+- [x] AOS scroll motion effects
+- [x] Responsive glassmorphism design
 - [ ] Dark mode
 - [ ] Poin kontribusi user
 - [ ] Top contributor badge
