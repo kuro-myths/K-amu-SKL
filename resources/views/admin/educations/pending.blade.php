@@ -1,13 +1,13 @@
 @extends('layouts.app')
-@section('title', 'Link Pending')
+@section('title', 'Tautan Menunggu')
 
 @section('content')
 <section class="py-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between mb-8">
-            <h1 class="text-2xl font-bold text-gray-900">Link <span class="gradient-text">Menunggu Approval</span></h1>
+            <h1 class="text-2xl font-bold text-gray-900">Tautan <span class="gradient-text">Menunggu Persetujuan</span></h1>
             <a href="{{ route('admin.educations.index') }}" class="text-gray-500 hover:text-purple-600 text-sm flex items-center">
-                <i data-feather="arrow-left" class="w-4 h-4 mr-1"></i> Semua Link
+                <i data-feather="arrow-left" class="w-4 h-4 mr-1"></i> Semua Tautan
             </a>
         </div>
 
@@ -17,7 +17,7 @@
                     <div class="flex-1">
                         <div class="flex items-center gap-2 mb-2">
                             <span class="px-2 py-1 rounded-lg bg-purple-50 text-purple-600 text-xs font-medium">{{ $edu->category->name }}</span>
-                            <span class="px-2 py-1 rounded-lg bg-teal-50 text-teal-600 text-xs font-medium">{{ ucfirst($edu->level) }}</span>
+                            <span class="px-2 py-1 rounded-lg bg-teal-50 text-teal-600 text-xs font-medium">{{ $edu->level_label }}</span>
                         </div>
                         <h3 class="font-bold text-gray-900 mb-1">{{ $edu->title }}</h3>
                         <p class="text-gray-500 text-sm mb-2">{{ $edu->description }}</p>
@@ -30,13 +30,13 @@
                         <form action="{{ route('admin.educations.approve', $edu) }}" method="POST">
                             @csrf @method('PATCH')
                             <button class="px-4 py-2 bg-green-50 text-green-600 rounded-xl text-sm font-semibold hover:bg-green-100 transition">
-                                <i data-feather="check" class="w-4 h-4 inline mr-1"></i>Approve
+                                <i data-feather="check" class="w-4 h-4 inline mr-1"></i>Setujui
                             </button>
                         </form>
                         <form action="{{ route('admin.educations.reject', $edu) }}" method="POST">
                             @csrf @method('PATCH')
                             <button class="px-4 py-2 bg-red-50 text-red-600 rounded-xl text-sm font-semibold hover:bg-red-100 transition">
-                                <i data-feather="x" class="w-4 h-4 inline mr-1"></i>Reject
+                                <i data-feather="x" class="w-4 h-4 inline mr-1"></i>Tolak
                             </button>
                         </form>
                     </div>
@@ -45,7 +45,7 @@
         @empty
             <div class="text-center py-20">
                 <i data-feather="check-circle" class="w-16 h-16 text-green-300 mx-auto mb-4"></i>
-                <p class="text-gray-500 text-lg">Tidak ada link yang menunggu approval!</p>
+                <p class="text-gray-500 text-lg">Tidak ada tautan yang menunggu persetujuan!</p>
             </div>
         @endforelse
 

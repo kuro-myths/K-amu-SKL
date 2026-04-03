@@ -11,25 +11,25 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
-                'name'        => 'Programming',
+                'name'        => 'Pemrograman',
                 'slug'        => 'programming',
                 'description' => 'Bahasa pemrograman, framework, dan tutorial coding',
                 'icon'        => 'code',
             ],
             [
-                'name'        => 'Design',
+                'name'        => 'Desain',
                 'slug'        => 'design',
                 'description' => 'Desain grafis, ilustrasi, dan tools kreatif',
-                'icon'        => 'palette',
+                'icon'        => 'pen-tool',
             ],
             [
-                'name'        => 'Business',
+                'name'        => 'Bisnis',
                 'slug'        => 'business',
                 'description' => 'Bisnis, marketing, dan entrepreneurship',
                 'icon'        => 'briefcase',
             ],
             [
-                'name'        => 'Artificial Intelligence',
+                'name'        => 'Kecerdasan Buatan',
                 'slug'        => 'artificial-intelligence',
                 'description' => 'Machine learning, deep learning, dan AI tools',
                 'icon'        => 'cpu',
@@ -44,13 +44,13 @@ class CategorySeeder extends Seeder
                 'name'        => 'Matematika',
                 'slug'        => 'matematika',
                 'description' => 'Matematika, statistik, dan logika',
-                'icon'        => 'calculator',
+                'icon'        => 'hash',
             ],
             [
-                'name'        => 'Tools Developer',
+                'name'        => 'Alat Developer',
                 'slug'        => 'tools-developer',
                 'description' => 'Tools, IDE, extensions, dan resource developer',
-                'icon'        => 'wrench',
+                'icon'        => 'tool',
             ],
             [
                 'name'        => 'Referensi Akademik',
@@ -65,7 +65,7 @@ class CategorySeeder extends Seeder
                 'icon'        => 'layout',
             ],
             [
-                'name'        => 'Career',
+                'name'        => 'Karier',
                 'slug'        => 'career',
                 'description' => 'Tips karir, CV, interview, dan pengembangan profesional',
                 'icon'        => 'trending-up',

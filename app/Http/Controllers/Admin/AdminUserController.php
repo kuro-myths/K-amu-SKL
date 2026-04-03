@@ -36,7 +36,9 @@ class AdminUserController extends Controller
             'role' => $user->role === 'admin' ? 'user' : 'admin',
         ]);
 
-        return back()->with('success', "Role user '{$user->name}' berhasil diubah menjadi {$user->role}.");
+        $roleLabel = $user->role === 'admin' ? 'Administrator' : 'Pengguna';
+
+        return back()->with('success', "Peran pengguna '{$user->name}' berhasil diubah menjadi {$roleLabel}.");
     }
 
     public function destroy(User $user)
@@ -48,6 +50,6 @@ class AdminUserController extends Controller
         $user->delete();
 
         return redirect()->route('admin.users.index')
-            ->with('success', 'User berhasil dihapus!');
+            ->with('success', 'Pengguna berhasil dihapus!');
     }
 }

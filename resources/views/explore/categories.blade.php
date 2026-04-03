@@ -16,7 +16,7 @@
                         <i data-feather="{{ $category->icon ?? 'folder' }}" class="w-7 h-7 text-white"></i>
                     </div>
                     <h3 class="font-bold text-gray-800 mb-1">{{ $category->name }}</h3>
-                    <p class="text-sm text-gray-500">{{ $category->approved_educations_count }} link edukasi</p>
+                    <p class="text-sm text-gray-500">{{ $category->approved_educations_count }} tautan edukasi</p>
                     @if($category->description)
                         <p class="text-xs text-gray-400 mt-2 line-clamp-2">{{ $category->description }}</p>
                     @endif

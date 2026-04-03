@@ -27,7 +27,7 @@ class ReviewController extends Controller
 
         if ($existing) {
             $existing->update($validated);
-            $message = 'Review berhasil diperbarui!';
+            $message = 'Ulasan berhasil diperbarui!';
         } else {
             Review::create([
                 'user_id'      => Auth::id(),
@@ -35,7 +35,7 @@ class ReviewController extends Controller
                 'rating'       => $validated['rating'],
                 'comment'      => $validated['comment'] ?? null,
             ]);
-            $message = 'Review berhasil ditambahkan!';
+            $message = 'Ulasan berhasil ditambahkan!';
         }
 
         return back()->with('success', $message);
@@ -48,6 +48,6 @@ class ReviewController extends Controller
         }
 
         $review->delete();
-        return back()->with('success', 'Review berhasil dihapus!');
+        return back()->with('success', 'Ulasan berhasil dihapus!');
     }
 }

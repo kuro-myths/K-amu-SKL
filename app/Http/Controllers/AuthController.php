@@ -36,7 +36,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'Email atau password salah.',
+            'email' => 'Email atau kata sandi salah.',
         ])->onlyInput('email');
     }
 
@@ -63,7 +63,7 @@ class AuthController extends Controller
         Auth::login($user);
 
         return redirect()->route('dashboard')
-            ->with('success', 'Selamat datang di K-amu SKL!');
+            ->with('success', 'Akun berhasil dibuat. Selamat datang di K-amu SKL!');
     }
 
     public function logout(Request $request)
@@ -73,6 +73,6 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('landing')
-            ->with('success', 'Berhasil logout.');
+            ->with('success', 'Berhasil keluar.');
     }
 }

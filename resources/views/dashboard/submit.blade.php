@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Submit Link Edukasi')
+@section('title', 'Kirim Tautan Edukasi')
 
 @section('content')
 <section class="py-10">
@@ -8,8 +8,8 @@
             <a href="{{ route('dashboard') }}" class="text-gray-500 hover:text-purple-600 text-sm flex items-center mb-4">
                 <i data-feather="arrow-left" class="w-4 h-4 mr-1"></i> Kembali ke Dashboard
             </a>
-            <h1 class="text-2xl font-bold text-gray-900">Submit Link Edukasi</h1>
-            <p class="text-gray-500 text-sm">Bagikan resource edukasi gratis</p>
+            <h1 class="text-2xl font-bold text-gray-900">Kirim Tautan Edukasi</h1>
+            <p class="text-gray-500 text-sm">Bagikan sumber belajar gratis</p>
         </div>
 
         <form method="POST" action="{{ route('submit.store') }}" class="bg-white rounded-2xl p-8 border border-gray-100 space-y-5">
@@ -47,16 +47,16 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">Level</label>
                     <select name="level" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-purple-400 outline-none @error('level') border-red-400 @enderror">
                         <option value="">Pilih—</option>
-                        <option value="basic" {{ old('level') == 'basic' ? 'selected' : '' }}>Basic</option>
-                        <option value="intermediate" {{ old('level') == 'intermediate' ? 'selected' : '' }}>Intermediate</option>
-                        <option value="advanced" {{ old('level') == 'advanced' ? 'selected' : '' }}>Advanced</option>
-                        <option value="free" {{ old('level') == 'free' ? 'selected' : '' }}>Free</option>
+                        <option value="basic" {{ old('level') == 'basic' ? 'selected' : '' }}>Dasar</option>
+                        <option value="intermediate" {{ old('level') == 'intermediate' ? 'selected' : '' }}>Menengah</option>
+                        <option value="advanced" {{ old('level') == 'advanced' ? 'selected' : '' }}>Lanjutan</option>
+                        <option value="free" {{ old('level') == 'free' ? 'selected' : '' }}>Gratis</option>
                     </select>
                     @error('level') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                 </div>
             </div>
             <button type="submit" class="w-full gradient-bg text-white py-3 rounded-xl font-semibold hover:opacity-90 transition glow-hover">
-                Submit Link
+                Kirim Tautan
             </button>
         </form>
     </div>

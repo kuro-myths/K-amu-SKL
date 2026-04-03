@@ -58,7 +58,7 @@ class AdminCategoryController extends Controller
     public function destroy(Category $category)
     {
         if ($category->educations()->count() > 0) {
-            return back()->with('error', 'Kategori tidak bisa dihapus karena masih memiliki link edukasi.');
+            return back()->with('error', 'Kategori tidak bisa dihapus karena masih memiliki tautan edukasi.');
         }
 
         $category->delete();

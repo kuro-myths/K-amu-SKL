@@ -35,6 +35,27 @@ class Education extends Model
         ];
     }
 
+    public function getLevelLabelAttribute(): string
+    {
+        return match ($this->level) {
+            'basic' => 'Dasar',
+            'intermediate' => 'Menengah',
+            'advanced' => 'Lanjutan',
+            'free' => 'Gratis',
+            default => ucwords(str_replace('-', ' ', (string) $this->level)),
+        };
+    }
+
+    public function getStatusLabelAttribute(): string
+    {
+        return match ($this->status) {
+            'pending' => 'Menunggu',
+            'approved' => 'Disetujui',
+            'rejected' => 'Ditolak',
+            default => ucfirst((string) $this->status),
+        };
+    }
+
     protected static function boot()
     {
         parent::boot();

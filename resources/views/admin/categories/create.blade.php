@@ -21,8 +21,8 @@
                 <textarea name="description" rows="3" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-purple-400 focus:ring-2 focus:ring-purple-100 outline-none transition">{{ old('description') }}</textarea>
             </div>
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Icon (Feather)</label>
-                <input type="text" name="icon" value="{{ old('icon', 'folder') }}" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-purple-400 outline-none transition" placeholder="folder, code, book, etc">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Ikon (Feather)</label>
+                <input type="text" name="icon" value="{{ old('icon', 'folder') }}" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-purple-400 outline-none transition" placeholder="folder, code, book, dll">
             </div>
             <button type="submit" class="w-full gradient-bg text-white py-3 rounded-xl font-semibold hover:opacity-90 transition glow-hover">Simpan</button>
         </form>

@@ -46,7 +46,7 @@ class AdminEducationController extends Controller
     {
         $education->update(['status' => 'approved']);
 
-        return back()->with('success', "Link '{$education->title}' berhasil di-approve!");
+        return back()->with('success', "Tautan '{$education->title}' berhasil disetujui!");
     }
 
     public function reject(Education $education)
@@ -56,13 +56,13 @@ class AdminEducationController extends Controller
             'is_featured' => false,
         ]);
 
-        return back()->with('success', "Link '{$education->title}' berhasil di-reject.");
+        return back()->with('success', "Tautan '{$education->title}' berhasil ditolak.");
     }
 
     public function toggleFeatured(Education $education)
     {
         if ($education->status !== 'approved') {
-            return back()->with('error', 'Hanya link berstatus approved yang bisa dijadikan unggulan.');
+            return back()->with('error', 'Hanya tautan berstatus disetujui yang bisa dijadikan unggulan.');
         }
 
         $education->update([
@@ -70,8 +70,8 @@ class AdminEducationController extends Controller
         ]);
 
         $message = $education->is_featured
-            ? "Link '{$education->title}' berhasil ditandai sebagai unggulan!"
-            : "Link '{$education->title}' tidak lagi menjadi unggulan.";
+            ? "Tautan '{$education->title}' berhasil ditandai sebagai unggulan!"
+            : "Tautan '{$education->title}' tidak lagi menjadi unggulan.";
 
         return back()->with('success', $message);
     }
@@ -103,7 +103,7 @@ class AdminEducationController extends Controller
         $education->update($validated);
 
         return redirect()->route('admin.educations.index')
-            ->with('success', 'Link berhasil diperbarui!');
+            ->with('success', 'Tautan berhasil diperbarui!');
     }
 
     public function destroy(Education $education)
@@ -111,6 +111,6 @@ class AdminEducationController extends Controller
         $education->delete();
 
         return redirect()->route('admin.educations.index')
-            ->with('success', 'Link berhasil dihapus!');
+            ->with('success', 'Tautan berhasil dihapus!');
     }
 }

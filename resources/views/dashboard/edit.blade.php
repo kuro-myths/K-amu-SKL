@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Edit Link')
+@section('title', 'Ubah Tautan')
 
 @section('content')
 <section class="py-10">
@@ -8,7 +8,7 @@
             <a href="{{ route('dashboard') }}" class="text-gray-500 hover:text-purple-600 text-sm flex items-center mb-4">
                 <i data-feather="arrow-left" class="w-4 h-4 mr-1"></i> Kembali ke Dashboard
             </a>
-            <h1 class="text-2xl font-bold text-gray-900">Edit Link Edukasi</h1>
+            <h1 class="text-2xl font-bold text-gray-900">Ubah Tautan Edukasi</h1>
         </div>
 
         <form method="POST" action="{{ route('education.update', $education) }}" class="bg-white rounded-2xl p-8 border border-gray-100 space-y-5">
@@ -44,8 +44,8 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Level</label>
                     <select name="level" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-purple-400 outline-none">
-                        @foreach(['basic', 'intermediate', 'advanced', 'free'] as $lvl)
-                            <option value="{{ $lvl }}" {{ old('level', $education->level) == $lvl ? 'selected' : '' }}>{{ ucfirst($lvl) }}</option>
+                            @foreach(['basic' => 'Dasar', 'intermediate' => 'Menengah', 'advanced' => 'Lanjutan', 'free' => 'Gratis'] as $lvl => $label)
+                                <option value="{{ $lvl }}" {{ old('level', $education->level) == $lvl ? 'selected' : '' }}>{{ $label }}</option>
                         @endforeach
                     </select>
                     @error('level') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror

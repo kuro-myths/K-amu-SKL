@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Login')
+@section('title', 'Masuk')
 
 @section('content')
 <div class="min-h-[70vh] flex items-center justify-center py-12 px-4">
@@ -24,7 +24,7 @@
 
             <div class="relative my-6">
                 <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-200"></div></div>
-                <div class="relative flex justify-center text-sm"><span class="px-3 bg-white text-gray-400">atau login dengan email</span></div>
+                <div class="relative flex justify-center text-sm"><span class="px-3 bg-white text-gray-400">atau masuk dengan email</span></div>
             </div>
 
             <form method="POST" action="{{ route('login') }}" class="space-y-4">
@@ -36,7 +36,7 @@
                     @error('email') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Kata Sandi</label>
                     <input type="password" name="password" required
                         class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-purple-400 focus:ring-2 focus:ring-purple-100 outline-none transition @error('password') border-red-400 @enderror">
                     @error('password') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror

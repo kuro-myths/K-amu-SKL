@@ -39,6 +39,15 @@ class User extends Authenticatable
         return $this->role === 'admin';
     }
 
+    public function getRoleLabelAttribute(): string
+    {
+        return match ($this->role) {
+            'admin' => 'Administrator',
+            'user' => 'Pengguna',
+            default => ucfirst((string) $this->role),
+        };
+    }
+
     public function educations(): HasMany
     {
         return $this->hasMany(Education::class, 'created_by');

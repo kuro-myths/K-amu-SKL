@@ -17,7 +17,7 @@
                     <tr>
                         <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Nama</th>
                         <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Slug</th>
-                        <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Link</th>
+                        <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Tautan</th>
                         <th class="px-6 py-3 text-right text-xs font-semibold text-gray-500 uppercase">Aksi</th>
                     </tr>
                 </thead>
@@ -31,7 +31,7 @@
                             <td class="px-6 py-4 text-sm text-gray-500">{{ $cat->slug }}</td>
                             <td class="px-6 py-4 text-sm text-gray-500">{{ $cat->educations_count ?? 0 }}</td>
                             <td class="px-6 py-4 text-right">
-                                <a href="{{ route('admin.categories.edit', $cat) }}" class="text-purple-600 hover:text-purple-700 text-sm font-medium mr-3">Edit</a>
+                                <a href="{{ route('admin.categories.edit', $cat) }}" class="text-purple-600 hover:text-purple-700 text-sm font-medium mr-3">Ubah</a>
                                 <form action="{{ route('admin.categories.destroy', $cat) }}" method="POST" class="inline" onsubmit="return confirm('Hapus kategori ini?')">
                                     @csrf @method('DELETE')
                                     <button type="submit" class="text-red-500 hover:text-red-600 text-sm font-medium">Hapus</button>

@@ -61,7 +61,7 @@ class DashboardController extends Controller
         Education::create($validated);
 
         return redirect()->route('dashboard')
-            ->with('success', 'Link berhasil disubmit! Menunggu approval admin.');
+            ->with('success', 'Tautan berhasil dikirim! Menunggu persetujuan admin.');
     }
 
     public function edit(Education $education)
@@ -86,7 +86,7 @@ class DashboardController extends Controller
         $education->update($validated);
 
         return redirect()->route('dashboard')
-            ->with('success', 'Link berhasil diperbarui!');
+            ->with('success', 'Tautan berhasil diperbarui!');
     }
 
     public function destroy(Education $education)
@@ -95,7 +95,7 @@ class DashboardController extends Controller
         $education->delete();
 
         return redirect()->route('dashboard')
-            ->with('success', 'Link berhasil dihapus!');
+            ->with('success', 'Tautan berhasil dihapus!');
     }
 
     public function bookmarks()
@@ -119,13 +119,13 @@ class DashboardController extends Controller
 
         if ($bookmark) {
             $bookmark->delete();
-            $message = 'Bookmark dihapus.';
+            $message = 'Tautan dihapus dari bookmark.';
         } else {
             Bookmark::create([
                 'user_id' => $user->id,
                 'education_id' => $education->id,
             ]);
-            $message = 'Berhasil di-bookmark!';
+            $message = 'Tautan berhasil disimpan ke bookmark!';
         }
 
         return back()->with('success', $message);

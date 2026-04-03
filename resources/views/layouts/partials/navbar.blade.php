@@ -17,7 +17,7 @@
                 <a href="{{ route('categories') }}" class="text-gray-600 hover:text-purple-600 transition font-medium text-sm">Kategori</a>
 
                 @auth
-                    <a href="{{ route('dashboard') }}" class="text-gray-600 hover:text-purple-600 transition font-medium text-sm">Dashboard</a>
+                    <a href="{{ route('dashboard') }}" class="text-gray-600 hover:text-purple-600 transition font-medium text-sm">Dasbor</a>
 
                     @if(auth()->user()->isAdmin())
                         <a href="{{ route('admin.dashboard') }}" class="text-gray-600 hover:text-purple-600 transition font-medium text-sm">Admin</a>
@@ -47,16 +47,16 @@
                                     <p class="text-xs text-gray-500 truncate">{{ auth()->user()->email }}</p>
                                 </div>
                                 <a href="{{ route('profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600">Profil</a>
-                                <a href="{{ route('submit') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600">Submit Link</a>
+                                <a href="{{ route('submit') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600">Kirim Tautan</a>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50">Logout</button>
+                                    <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50">Keluar</button>
                                 </form>
                             </div>
                         </div>
                     </div>
                 @else
-                    <a href="{{ route('login') }}" class="text-gray-600 hover:text-purple-600 transition font-medium text-sm">Login</a>
+                    <a href="{{ route('login') }}" class="text-gray-600 hover:text-purple-600 transition font-medium text-sm">Masuk</a>
                     <a href="{{ route('register') }}" class="gradient-bg text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition glow-hover">
                         Daftar Gratis
                     </a>
@@ -79,19 +79,19 @@
             <a href="{{ route('explore') }}" class="block py-2 text-gray-600 hover:text-purple-600 text-sm">Jelajahi</a>
             <a href="{{ route('categories') }}" class="block py-2 text-gray-600 hover:text-purple-600 text-sm">Kategori</a>
             @auth
-                <a href="{{ route('dashboard') }}" class="block py-2 text-gray-600 hover:text-purple-600 text-sm">Dashboard</a>
-                <a href="{{ route('bookmarks') }}" class="block py-2 text-gray-600 hover:text-purple-600 text-sm">Bookmark</a>
+                <a href="{{ route('dashboard') }}" class="block py-2 text-gray-600 hover:text-purple-600 text-sm">Dasbor</a>
+                <a href="{{ route('bookmarks') }}" class="block py-2 text-gray-600 hover:text-purple-600 text-sm">Tersimpan</a>
                 <a href="{{ route('profile') }}" class="block py-2 text-gray-600 hover:text-purple-600 text-sm">Profil</a>
-                <a href="{{ route('submit') }}" class="block py-2 text-gray-600 hover:text-purple-600 text-sm">Submit Link</a>
+                <a href="{{ route('submit') }}" class="block py-2 text-gray-600 hover:text-purple-600 text-sm">Kirim Tautan</a>
                 @if(auth()->user()->isAdmin())
                     <a href="{{ route('admin.dashboard') }}" class="block py-2 text-gray-600 hover:text-purple-600 text-sm">Admin</a>
                 @endif
                 <form method="POST" action="{{ route('logout') }}" class="pt-1">
                     @csrf
-                    <button type="submit" class="block w-full text-left py-2 text-red-600 hover:text-red-700 text-sm">Logout</button>
+                    <button type="submit" class="block w-full text-left py-2 text-red-600 hover:text-red-700 text-sm">Keluar</button>
                 </form>
             @else
-                <a href="{{ route('login') }}" class="block py-2 text-gray-600 hover:text-purple-600 text-sm">Login</a>
+                <a href="{{ route('login') }}" class="block py-2 text-gray-600 hover:text-purple-600 text-sm">Masuk</a>
                 <a href="{{ route('register') }}" class="block py-2 text-purple-600 font-semibold text-sm">Daftar Gratis</a>
             @endauth
         </div>

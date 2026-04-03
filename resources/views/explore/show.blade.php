@@ -7,7 +7,7 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {{-- Breadcrumb --}}
         <nav class="flex items-center gap-2 text-sm text-gray-500 mb-6">
-            <a href="{{ route('explore') }}" class="hover:text-purple-600 transition">Explore</a>
+            <a href="{{ route('explore') }}" class="hover:text-purple-600 transition">Jelajahi</a>
             <i data-feather="chevron-right" class="w-4 h-4"></i>
             <a href="{{ route('explore', ['category' => $education->category->slug]) }}" class="hover:text-purple-600 transition">{{ $education->category->name }}</a>
             <i data-feather="chevron-right" class="w-4 h-4"></i>
@@ -20,7 +20,7 @@
                 <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
                     <div class="flex items-center gap-2 mb-4">
                         <span class="px-3 py-1 rounded-lg bg-purple-50 text-purple-600 text-sm font-medium">{{ $education->category->name }}</span>
-                        <span class="px-3 py-1 rounded-lg bg-teal-50 text-teal-600 text-sm font-medium">{{ ucfirst($education->level) }}</span>
+                        <span class="px-3 py-1 rounded-lg bg-teal-50 text-teal-600 text-sm font-medium">{{ $education->level_label }}</span>
                         @if($education->is_featured)
                             <span class="px-3 py-1 rounded-lg bg-yellow-50 text-yellow-700 text-sm font-semibold">Unggulan</span>
                         @endif
@@ -46,7 +46,7 @@
                             @csrf
                             <button type="submit" class="border-2 border-purple-200 text-purple-600 px-6 py-3 rounded-xl font-semibold hover:bg-purple-50 transition inline-flex items-center">
                                 <i data-feather="bookmark" class="w-5 h-5 mr-2"></i>
-                                Bookmark
+                                Simpan
                             </button>
                         </form>
                     @endauth
@@ -54,19 +54,19 @@
 
                 {{-- Reviews --}}
                 <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 mt-6">
-                    <h2 class="text-xl font-bold text-gray-900 mb-6">Review & Rating</h2>
+                    <h2 class="text-xl font-bold text-gray-900 mb-6">Ulasan & Penilaian</h2>
 
                     @auth
                         <form action="{{ route('review.store', $education) }}" method="POST" class="mb-8 p-4 bg-gray-50 rounded-xl">
                             @csrf
                             <div class="mb-3">
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Rating</label>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Nilai</label>
                                 <select name="rating" required class="px-4 py-2 rounded-lg border border-gray-200">
-                                    <option value="5">⭐⭐⭐⭐⭐ (5)</option>
-                                    <option value="4">⭐⭐⭐⭐ (4)</option>
-                                    <option value="3">⭐⭐⭐ (3)</option>
-                                    <option value="2">⭐⭐ (2)</option>
-                                    <option value="1">⭐ (1)</option>
+                                    <option value="5">5 - Sangat Baik</option>
+                                    <option value="4">4 - Baik</option>
+                                    <option value="3">3 - Cukup</option>
+                                    <option value="2">2 - Kurang</option>
+                                    <option value="1">1 - Sangat Kurang</option>
                                 </select>
                             </div>
                             <div class="mb-3">
@@ -74,7 +74,7 @@
                                     class="w-full px-4 py-2 rounded-lg border border-gray-200 focus:border-purple-400 outline-none"></textarea>
                             </div>
                             <button type="submit" class="gradient-bg text-white px-5 py-2 rounded-lg text-sm font-semibold hover:opacity-90 transition">
-                                Kirim Review
+                                Kirim Ulasan
                             </button>
                         </form>
                     @endauth
@@ -98,7 +98,7 @@
                             @endif
                         </div>
                     @empty
-                        <p class="text-gray-400 text-center py-4">Belum ada review.</p>
+                        <p class="text-gray-400 text-center py-4">Belum ada ulasan.</p>
                     @endforelse
                 </div>
             </div>
@@ -110,7 +110,7 @@
                     @forelse($relatedEducations as $rel)
                         <a href="{{ route('education.show', $rel) }}" class="block p-3 rounded-xl hover:bg-gray-50 transition mb-2">
                             <h4 class="font-semibold text-sm text-gray-800 line-clamp-2">{{ $rel->title }}</h4>
-                            <span class="text-xs text-gray-400">{{ ucfirst($rel->level) }} · {{ number_format($rel->views) }} views</span>
+                            <span class="text-xs text-gray-400">{{ $rel->level_label }} · {{ number_format($rel->views) }} tayangan</span>
                         </a>
                     @empty
                         <p class="text-gray-400 text-sm">Belum ada materi terkait.</p>
