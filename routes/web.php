@@ -1,15 +1,15 @@
 <?php
 
-use App\Http\Controllers\LandingController;
-use App\Http\Controllers\ExploreController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\SocialAuthController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\Admin\AdminCategoryController;
-use App\Http\Controllers\Admin\AdminEducationController;
-use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\JelajahController;
+use App\Http\Controllers\DasborController;
+use App\Http\Controllers\UlasanController;
+use App\Http\Controllers\AutentikasiSosialController;
+use App\Http\Controllers\AutentikasiController;
+use App\Http\Controllers\Admin\DasborAdminController;
+use App\Http\Controllers\Admin\KategoriAdminController;
+use App\Http\Controllers\Admin\EdukasiAdminController;
+use App\Http\Controllers\Admin\PenggunaAdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,10 +18,10 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', [LandingController::class, 'index'])->name('landing');
-Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
-Route::get('/categories', [ExploreController::class, 'categories'])->name('categories');
-Route::get('/education/{education}', [ExploreController::class, 'show'])->name('education.show');
+Route::get('/', [BerandaController::class, 'index'])->name('landing');
+Route::get('/explore', [JelajahController::class, 'index'])->name('explore');
+Route::get('/categories', [JelajahController::class, 'categories'])->name('categories');
+Route::get('/education/{education}', [JelajahController::class, 'show'])->name('education.show');
 
 /*
 |--------------------------------------------------------------------------
@@ -30,13 +30,13 @@ Route::get('/education/{education}', [ExploreController::class, 'show'])->name('
 */
 
 Route::middleware('guest')->group(function () {
-    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-    Route::post('/register', [AuthController::class, 'register']);
+    Route::get('/login', [AutentikasiController::class, 'showLogin'])->name('login');
+    Route::post('/login', [AutentikasiController::class, 'login']);
+    Route::get('/register', [AutentikasiController::class, 'showRegister'])->name('register');
+    Route::post('/register', [AutentikasiController::class, 'register']);
 });
 
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
+Route::post('/logout', [AutentikasiController::class, 'logout'])->middleware('auth')->name('logout');
 
 /*
 |--------------------------------------------------------------------------
@@ -44,8 +44,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->n
 |--------------------------------------------------------------------------
 */
 
-Route::get('/auth/{provider}/redirect', [SocialAuthController::class, 'redirect'])->name('social.redirect');
-Route::get('/auth/{provider}/callback', [SocialAuthController::class, 'callback'])->name('social.callback');
+Route::get('/auth/{provider}/redirect', [AutentikasiSosialController::class, 'redirect'])->name('social.redirect');
+Route::get('/auth/{provider}/callback', [AutentikasiSosialController::class, 'callback'])->name('social.callback');
 
 /*
 |--------------------------------------------------------------------------
@@ -55,28 +55,28 @@ Route::get('/auth/{provider}/callback', [SocialAuthController::class, 'callback'
 
 Route::middleware('auth')->group(function () {
     // Dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DasborController::class, 'index'])->name('dashboard');
 
     // Submit link
-    Route::get('/submit', [DashboardController::class, 'submit'])->name('submit');
-    Route::post('/submit', [DashboardController::class, 'store'])->name('submit.store');
+    Route::get('/submit', [DasborController::class, 'submit'])->name('submit');
+    Route::post('/submit', [DasborController::class, 'store'])->name('submit.store');
 
     // Edit / Delete own links
-    Route::get('/education/{education}/edit', [DashboardController::class, 'edit'])->name('education.edit');
-    Route::put('/education/{education}', [DashboardController::class, 'update'])->name('education.update');
-    Route::delete('/education/{education}', [DashboardController::class, 'destroy'])->name('education.destroy');
+    Route::get('/education/{education}/edit', [DasborController::class, 'edit'])->name('education.edit');
+    Route::put('/education/{education}', [DasborController::class, 'update'])->name('education.update');
+    Route::delete('/education/{education}', [DasborController::class, 'destroy'])->name('education.destroy');
 
     // Bookmarks
-    Route::get('/bookmarks', [DashboardController::class, 'bookmarks'])->name('bookmarks');
-    Route::post('/bookmark/{education}', [DashboardController::class, 'toggleBookmark'])->name('bookmark.toggle');
+    Route::get('/bookmarks', [DasborController::class, 'bookmarks'])->name('bookmarks');
+    Route::post('/bookmark/{education}', [DasborController::class, 'toggleBookmark'])->name('bookmark.toggle');
 
     // Reviews
-    Route::post('/education/{education}/review', [ReviewController::class, 'store'])->name('review.store');
-    Route::delete('/review/{review}', [ReviewController::class, 'destroy'])->name('review.destroy');
+    Route::post('/education/{education}/review', [UlasanController::class, 'store'])->name('review.store');
+    Route::delete('/review/{review}', [UlasanController::class, 'destroy'])->name('review.destroy');
 
     // Profile
-    Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
-    Route::put('/profile', [DashboardController::class, 'updateProfile'])->name('profile.update');
+    Route::get('/profile', [DasborController::class, 'profile'])->name('profile');
+    Route::put('/profile', [DasborController::class, 'updateProfile'])->name('profile.update');
 });
 
 /*
@@ -87,23 +87,23 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     // Dashboard Admin
-    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/', [DasborAdminController::class, 'index'])->name('dashboard');
 
     // Kelola Kategori
-    Route::resource('categories', AdminCategoryController::class)->except('show');
+    Route::resource('categories', KategoriAdminController::class)->except('show');
 
     // Kelola Link Edukasi
-    Route::get('/educations', [AdminEducationController::class, 'index'])->name('educations.index');
-    Route::get('/educations/pending', [AdminEducationController::class, 'pending'])->name('educations.pending');
-    Route::patch('/educations/{education}/approve', [AdminEducationController::class, 'approve'])->name('educations.approve');
-    Route::patch('/educations/{education}/reject', [AdminEducationController::class, 'reject'])->name('educations.reject');
-    Route::patch('/educations/{education}/toggle-featured', [AdminEducationController::class, 'toggleFeatured'])->name('educations.toggle-featured');
-    Route::get('/educations/{education}/edit', [AdminEducationController::class, 'edit'])->name('educations.edit');
-    Route::put('/educations/{education}', [AdminEducationController::class, 'update'])->name('educations.update');
-    Route::delete('/educations/{education}', [AdminEducationController::class, 'destroy'])->name('educations.destroy');
+    Route::get('/educations', [EdukasiAdminController::class, 'index'])->name('educations.index');
+    Route::get('/educations/pending', [EdukasiAdminController::class, 'pending'])->name('educations.pending');
+    Route::patch('/educations/{education}/approve', [EdukasiAdminController::class, 'approve'])->name('educations.approve');
+    Route::patch('/educations/{education}/reject', [EdukasiAdminController::class, 'reject'])->name('educations.reject');
+    Route::patch('/educations/{education}/toggle-featured', [EdukasiAdminController::class, 'toggleFeatured'])->name('educations.toggle-featured');
+    Route::get('/educations/{education}/edit', [EdukasiAdminController::class, 'edit'])->name('educations.edit');
+    Route::put('/educations/{education}', [EdukasiAdminController::class, 'update'])->name('educations.update');
+    Route::delete('/educations/{education}', [EdukasiAdminController::class, 'destroy'])->name('educations.destroy');
 
     // Kelola User
-    Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
-    Route::patch('/users/{user}/toggle-role', [AdminUserController::class, 'toggleRole'])->name('users.toggle-role');
-    Route::delete('/users/{user}', [AdminUserController::class, 'destroy'])->name('users.destroy');
+    Route::get('/users', [PenggunaAdminController::class, 'index'])->name('users.index');
+    Route::patch('/users/{user}/toggle-role', [PenggunaAdminController::class, 'toggleRole'])->name('users.toggle-role');
+    Route::delete('/users/{user}', [PenggunaAdminController::class, 'destroy'])->name('users.destroy');
 });

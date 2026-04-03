@@ -12,18 +12,18 @@ class AdminCategoryController extends Controller
     public function index()
     {
         $categories = Category::withCount('educations')->orderBy('name')->paginate(15);
-        return view('admin.categories.index', compact('categories'));
+        return view('admin.kategori.index', compact('categories'));
     }
 
     public function create()
     {
-        return view('admin.categories.create');
+        return view('admin.kategori.create');
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'        => 'required|string|max:255|unique:categories',
+            'name'        => 'required|string|max:255|unique:kategori',
             'description' => 'nullable|string|max:500',
             'icon'        => 'nullable|string|max:100',
         ]);
@@ -37,13 +37,13 @@ class AdminCategoryController extends Controller
 
     public function edit(Category $category)
     {
-        return view('admin.categories.edit', compact('category'));
+        return view('admin.kategori.edit', compact('category'));
     }
 
     public function update(Request $request, Category $category)
     {
         $validated = $request->validate([
-            'name'        => 'required|string|max:255|unique:categories,name,' . $category->id,
+            'name'        => 'required|string|max:255|unique:kategori,name,' . $category->id,
             'description' => 'nullable|string|max:500',
             'icon'        => 'nullable|string|max:100',
         ]);

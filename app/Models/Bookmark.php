@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Bookmark extends Model
 {
+    protected $table = 'bookmarks';
+
     protected $fillable = [
         'user_id',
         'education_id',

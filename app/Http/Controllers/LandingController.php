@@ -27,7 +27,7 @@ class LandingController extends Controller
         $totalEducations = Education::approved()->count();
         $totalCategories = Category::count();
 
-        return view('landing', compact(
+        return view('beranda', compact(
             'categories',
             'featuredEducations',
             'popularEducations',

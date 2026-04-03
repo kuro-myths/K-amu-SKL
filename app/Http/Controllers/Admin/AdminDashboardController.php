@@ -28,7 +28,7 @@ class AdminDashboardController extends Controller
             ->take(5)
             ->get();
 
-        return view('admin.dashboard', compact(
+        return view('admin.dasbor', compact(
             'totalUsers',
             'totalEducations',
             'pendingEducations',
