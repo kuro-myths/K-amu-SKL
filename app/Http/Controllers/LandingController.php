@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Education;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class LandingController extends Controller
 {
     public function index()
     {
         $categories = Category::withCount('approvedEducations')->get();
+        $featuredEducations = Education::approved()
+            ->featured()
+            ->with(['category', 'creator'])
+            ->withAvg('reviews', 'rating')
+            ->orderByDesc('views')
+            ->take(6)
+            ->get();
         $popularEducations = Education::approved()
             ->popular()
             ->with(['category', 'creator'])
@@ -23,6 +29,7 @@ class LandingController extends Controller
 
         return view('landing', compact(
             'categories',
+            'featuredEducations',
             'popularEducations',
             'totalUsers',
             'totalEducations',

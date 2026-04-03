@@ -50,6 +50,14 @@
                     @endforeach
                 </select>
             </div>
+            <div class="rounded-xl border border-gray-200 px-4 py-3 bg-gray-50">
+                <label class="inline-flex items-center gap-2 text-sm font-medium text-gray-700">
+                    <input type="checkbox" name="is_featured" value="1" {{ old('is_featured', $education->is_featured) ? 'checked' : '' }}
+                        class="rounded border-gray-300 text-yellow-500 focus:ring-yellow-400">
+                    Tandai sebagai link unggulan
+                </label>
+                <p class="text-xs text-gray-500 mt-1">Catatan: hanya link berstatus approved yang akan tampil sebagai unggulan di publik.</p>
+            </div>
             <button type="submit" class="w-full gradient-bg text-white py-3 rounded-xl font-semibold hover:opacity-90 transition glow-hover">Simpan</button>
         </form>
     </div>

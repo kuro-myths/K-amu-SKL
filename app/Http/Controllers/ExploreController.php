@@ -10,7 +10,9 @@ class ExploreController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Education::approved()->with(['category', 'creator', 'reviews']);
+        $query = Education::approved()
+            ->with(['category', 'creator'])
+            ->withAvg('reviews', 'rating');
 
         // Search
         if ($request->filled('search')) {
@@ -31,11 +33,16 @@ class ExploreController extends Controller
             $query->where('level', $request->level);
         }
 
+        // Filter unggulan
+        if ($request->boolean('featured')) {
+            $query->featured();
+        }
+
         // Sort
         $sort = $request->input('sort', 'latest');
         match ($sort) {
             'popular' => $query->popular(),
-            'rating'  => $query->withAvg('reviews', 'rating')->orderByDesc('reviews_avg_rating'),
+            'rating'  => $query->orderByDesc('reviews_avg_rating')->orderByDesc('views'),
             default   => $query->latest(),
         };
 

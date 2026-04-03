@@ -23,9 +23,17 @@ class Education extends Model
         'level',
         'created_by',
         'status',
+        'is_featured',
         'views',
         'thumbnail',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'is_featured' => 'boolean',
+        ];
+    }
 
     protected static function boot()
     {
@@ -71,6 +79,11 @@ class Education extends Model
     public function scopePending($query)
     {
         return $query->where('status', 'pending');
+    }
+
+    public function scopeFeatured($query)
+    {
+        return $query->where('is_featured', true);
     }
 
     public function scopeByCategory($query, $categoryId)

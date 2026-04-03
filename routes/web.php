@@ -97,6 +97,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/educations/pending', [AdminEducationController::class, 'pending'])->name('educations.pending');
     Route::patch('/educations/{education}/approve', [AdminEducationController::class, 'approve'])->name('educations.approve');
     Route::patch('/educations/{education}/reject', [AdminEducationController::class, 'reject'])->name('educations.reject');
+    Route::patch('/educations/{education}/toggle-featured', [AdminEducationController::class, 'toggleFeatured'])->name('educations.toggle-featured');
     Route::get('/educations/{education}/edit', [AdminEducationController::class, 'edit'])->name('educations.edit');
     Route::put('/educations/{education}', [AdminEducationController::class, 'update'])->name('educations.update');
     Route::delete('/educations/{education}', [AdminEducationController::class, 'destroy'])->name('educations.destroy');

@@ -251,6 +251,61 @@
     </div>
 </section>
 
+{{-- ========== SECTION 4B: UNGGULAN ========== --}}
+<section class="py-20 bg-gradient-to-b from-amber-50/40 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+            <div data-aos="fade-right">
+                <span class="inline-flex items-center px-3 py-1 rounded-full bg-yellow-100 text-yellow-700 text-xs font-semibold mb-4 uppercase tracking-wide">Unggulan</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Pilihan <span class="gradient-text">Unggulan Minggu Ini</span></h2>
+                <p class="text-gray-600">Link terkurasi terbaik berdasarkan kualitas konten dan minat pengguna.</p>
+            </div>
+            <a href="{{ route('explore', ['featured' => 1]) }}" data-aos="fade-left" class="bg-yellow-500 text-white px-5 py-2.5 rounded-full font-semibold text-sm hover:bg-yellow-600 transition inline-flex items-center mt-4 md:mt-0 group">
+                Lihat Unggulan <i data-feather="star" class="w-4 h-4 ml-1"></i>
+            </a>
+        </div>
+
+        @if($featuredEducations->isNotEmpty())
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                @foreach($featuredEducations as $index => $featured)
+                    <div data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 }}"
+                         class="bg-white border border-yellow-100 rounded-2xl overflow-hidden card-hover transition-all duration-300 hover:border-yellow-300">
+                        <div class="h-40 overflow-hidden relative">
+                            @if($featured->thumbnail)
+                                <img src="{{ $featured->thumbnail }}" alt="{{ $featured->title }}" class="w-full h-full object-cover" loading="lazy">
+                            @else
+                                <div class="w-full h-full bg-gradient-to-br from-yellow-100 to-orange-100 flex items-center justify-center">
+                                    <i data-feather="star" class="w-10 h-10 text-yellow-500"></i>
+                                </div>
+                            @endif
+                            <div class="absolute top-2 left-2">
+                                <span class="px-2 py-0.5 rounded-md bg-yellow-500 text-white text-[11px] font-semibold">Unggulan</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs text-purple-600 font-semibold">{{ $featured->category->name }}</span>
+                                <span class="text-xs text-gray-500 flex items-center"><i data-feather="star" class="w-3 h-3 mr-1"></i>{{ number_format((float) ($featured->reviews_avg_rating ?? 0), 1) }}</span>
+                            </div>
+                            <h3 class="font-bold text-gray-900 mb-2 line-clamp-2">{{ $featured->title }}</h3>
+                            <p class="text-gray-500 text-sm mb-4 line-clamp-2">{{ $featured->description }}</p>
+                            <a href="{{ route('education.show', $featured) }}" class="text-yellow-700 text-sm font-semibold hover:text-yellow-800 inline-flex items-center">
+                                Buka Materi <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <div class="text-center py-10 bg-white rounded-2xl border border-yellow-100">
+                <i data-feather="star" class="w-12 h-12 text-yellow-400 mx-auto mb-3"></i>
+                <h3 class="text-lg font-bold text-gray-700 mb-2">Belum Ada Materi Unggulan</h3>
+                <p class="text-gray-500 text-sm">Admin bisa menandai materi terbaik sebagai unggulan dari panel admin.</p>
+            </div>
+        @endif
+    </div>
+</section>
+
 {{-- ========== SECTION 5: TOOLS GRATIS ========== --}}
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

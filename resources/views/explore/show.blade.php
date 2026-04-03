@@ -21,6 +21,9 @@
                     <div class="flex items-center gap-2 mb-4">
                         <span class="px-3 py-1 rounded-lg bg-purple-50 text-purple-600 text-sm font-medium">{{ $education->category->name }}</span>
                         <span class="px-3 py-1 rounded-lg bg-teal-50 text-teal-600 text-sm font-medium">{{ ucfirst($education->level) }}</span>
+                        @if($education->is_featured)
+                            <span class="px-3 py-1 rounded-lg bg-yellow-50 text-yellow-700 text-sm font-semibold">Unggulan</span>
+                        @endif
                         <span class="px-3 py-1 rounded-lg bg-gray-50 text-gray-500 text-sm flex items-center">
                             <i data-feather="eye" class="w-3 h-3 mr-1"></i>{{ number_format($education->views) }}
                         </span>

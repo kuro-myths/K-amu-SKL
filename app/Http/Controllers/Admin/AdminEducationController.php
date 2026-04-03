@@ -21,6 +21,10 @@ class AdminEducationController extends Controller
             $query->where('category_id', $request->category);
         }
 
+        if ($request->filled('featured')) {
+            $query->where('is_featured', $request->featured === '1');
+        }
+
         $educations = $query->latest()->paginate(15)->withQueryString();
         $categories = Category::orderBy('name')->get();
         $pendingCount = Education::pending()->count();
@@ -47,9 +51,29 @@ class AdminEducationController extends Controller
 
     public function reject(Education $education)
     {
-        $education->update(['status' => 'rejected']);
+        $education->update([
+            'status' => 'rejected',
+            'is_featured' => false,
+        ]);
 
         return back()->with('success', "Link '{$education->title}' berhasil di-reject.");
+    }
+
+    public function toggleFeatured(Education $education)
+    {
+        if ($education->status !== 'approved') {
+            return back()->with('error', 'Hanya link berstatus approved yang bisa dijadikan unggulan.');
+        }
+
+        $education->update([
+            'is_featured' => !$education->is_featured,
+        ]);
+
+        $message = $education->is_featured
+            ? "Link '{$education->title}' berhasil ditandai sebagai unggulan!"
+            : "Link '{$education->title}' tidak lagi menjadi unggulan.";
+
+        return back()->with('success', $message);
     }
 
     public function edit(Education $education)
@@ -67,7 +91,14 @@ class AdminEducationController extends Controller
             'category_id' => 'required|exists:categories,id',
             'level'       => 'required|in:basic,intermediate,advanced,free',
             'status'      => 'required|in:pending,approved,rejected',
+            'is_featured' => 'nullable|boolean',
         ]);
+
+        $validated['is_featured'] = $request->boolean('is_featured');
+
+        if ($validated['status'] !== 'approved') {
+            $validated['is_featured'] = false;
+        }
 
         $education->update($validated);
 

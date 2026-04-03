@@ -15,6 +15,7 @@ class AdminDashboardController extends Controller
         $totalUsers = User::count();
         $totalEducations = Education::count();
         $pendingEducations = Education::pending()->count();
+        $featuredEducations = Education::approved()->featured()->count();
         $totalCategories = Category::count();
 
         $categoryStats = Category::withCount('approvedEducations')
@@ -31,6 +32,7 @@ class AdminDashboardController extends Controller
             'totalUsers',
             'totalEducations',
             'pendingEducations',
+            'featuredEducations',
             'totalCategories',
             'categoryStats',
             'recentPending'

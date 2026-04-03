@@ -11,6 +11,10 @@ class ReviewController extends Controller
 {
     public function store(Request $request, Education $education)
     {
+        if ($education->status !== 'approved') {
+            abort(404);
+        }
+
         $validated = $request->validate([
             'rating'  => 'required|integer|min:1|max:5',
             'comment' => 'nullable|string|max:500',

@@ -36,6 +36,11 @@
                     <option value="popular" {{ request('sort') == 'popular' ? 'selected' : '' }}>Terpopuler</option>
                     <option value="rating" {{ request('sort') == 'rating' ? 'selected' : '' }}>Rating Tertinggi</option>
                 </select>
+                <label class="inline-flex items-center gap-2 px-4 py-3 rounded-xl border border-gray-200 bg-white">
+                    <input type="checkbox" name="featured" value="1" {{ request('featured') ? 'checked' : '' }}
+                        class="rounded border-gray-300 text-yellow-500 focus:ring-yellow-400">
+                    <span class="text-sm font-medium text-gray-700">Unggulan</span>
+                </label>
                 <button type="submit" class="gradient-bg text-white px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition">
                     Filter
                 </button>
@@ -56,13 +61,16 @@
                         <div class="flex items-center gap-2 mb-3">
                             <span class="px-2 py-1 rounded-lg bg-purple-50 text-purple-600 text-xs font-medium">{{ $edu->category->name }}</span>
                             <span class="px-2 py-1 rounded-lg bg-teal-50 text-teal-600 text-xs font-medium">{{ ucfirst($edu->level) }}</span>
+                            @if($edu->is_featured)
+                                <span class="px-2 py-1 rounded-lg bg-yellow-50 text-yellow-700 text-xs font-semibold">Unggulan</span>
+                            @endif
                         </div>
                         <h3 class="font-bold text-gray-900 mb-2 line-clamp-2">{{ $edu->title }}</h3>
                         <p class="text-gray-500 text-sm mb-4 line-clamp-3">{{ $edu->description }}</p>
                         <div class="flex items-center justify-between pt-3 border-t border-gray-50">
                             <div class="flex items-center gap-3 text-xs text-gray-400">
                                 <span class="flex items-center"><i data-feather="eye" class="w-3 h-3 mr-1"></i>{{ number_format($edu->views) }}</span>
-                                <span class="flex items-center"><i data-feather="star" class="w-3 h-3 mr-1"></i>{{ number_format($edu->reviews->avg('rating'), 1) }}</span>
+                                <span class="flex items-center"><i data-feather="star" class="w-3 h-3 mr-1"></i>{{ number_format((float) ($edu->reviews_avg_rating ?? 0), 1) }}</span>
                             </div>
                             <a href="{{ route('education.show', $edu) }}" class="text-purple-600 text-sm font-semibold hover:text-purple-700 transition flex items-center">
                                 Detail <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>

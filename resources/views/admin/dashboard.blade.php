@@ -10,7 +10,7 @@
         </div>
 
         {{-- Stats --}}
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
             <div class="bg-white rounded-2xl p-5 border border-gray-100 card-hover">
                 <div class="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center mb-3">
                     <i data-feather="users" class="w-5 h-5 text-purple-500"></i>
@@ -38,6 +38,13 @@
                 </div>
                 <p class="text-2xl font-bold text-gray-900">{{ $totalCategories }}</p>
                 <p class="text-sm text-gray-500">Kategori</p>
+            </div>
+            <div class="bg-white rounded-2xl p-5 border border-gray-100 card-hover">
+                <div class="w-10 h-10 rounded-xl bg-yellow-50 flex items-center justify-center mb-3">
+                    <i data-feather="star" class="w-5 h-5 text-yellow-500"></i>
+                </div>
+                <p class="text-2xl font-bold text-gray-900">{{ $featuredEducations }}</p>
+                <p class="text-sm text-gray-500">Link Unggulan</p>
             </div>
         </div>
 

@@ -957,6 +957,7 @@ class EducationSeeder extends Seeder
                     'level'       => $edu['level'],
                     'created_by'  => $creator->id,
                     'status'      => 'approved',
+                    'is_featured' => $edu['views'] >= 12000,
                     'views'       => $edu['views'],
                     'thumbnail'   => $edu['thumbnail'],
                 ]
