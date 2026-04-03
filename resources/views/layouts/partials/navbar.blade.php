@@ -81,6 +81,15 @@
             @auth
                 <a href="{{ route('dashboard') }}" class="block py-2 text-gray-600 hover:text-purple-600 text-sm">Dashboard</a>
                 <a href="{{ route('bookmarks') }}" class="block py-2 text-gray-600 hover:text-purple-600 text-sm">Bookmark</a>
+                <a href="{{ route('profile') }}" class="block py-2 text-gray-600 hover:text-purple-600 text-sm">Profil</a>
+                <a href="{{ route('submit') }}" class="block py-2 text-gray-600 hover:text-purple-600 text-sm">Submit Link</a>
+                @if(auth()->user()->isAdmin())
+                    <a href="{{ route('admin.dashboard') }}" class="block py-2 text-gray-600 hover:text-purple-600 text-sm">Admin</a>
+                @endif
+                <form method="POST" action="{{ route('logout') }}" class="pt-1">
+                    @csrf
+                    <button type="submit" class="block w-full text-left py-2 text-red-600 hover:text-red-700 text-sm">Logout</button>
+                </form>
             @else
                 <a href="{{ route('login') }}" class="block py-2 text-gray-600 hover:text-purple-600 text-sm">Login</a>
                 <a href="{{ route('register') }}" class="block py-2 text-purple-600 font-semibold text-sm">Daftar Gratis</a>
